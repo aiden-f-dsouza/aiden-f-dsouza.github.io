@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aiden D'Souza Portfolio</title>
+  <link rel="icon" type="image/x-icon" href="favicon/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
+  <link rel="manifest" href="favicon/site.webmanifest" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Geist+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --sidebar-w: 200px;
+      --text: #1a1a18;
+      --muted: #6b6b63;
+      --faint: #b0afa8;
+      --border: #e0dfd8;
+      --bg: #fafaf8;
+      --link: #4a6fa5;
+      --accent: #c0392b;
+    }
+
+    html { font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .layout {
+      display: flex;
+      width: 100%;
+      max-width: 900px;
+    }
+
+    /* ---- SIDEBAR ---- */
+    nav {
+      position: sticky;
+      top: 0;
+      align-self: flex-start;
+      width: var(--sidebar-w);
+      height: 100vh;
+      padding: 4.5rem 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      gap: 0;
+    }
+
+    nav .nav-group {
+      margin-bottom: 2rem;
+    }
+
+    nav .nav-label {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--faint);
+      margin-bottom: 0.5rem;
+    }
+
+    nav a {
+      display: block;
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 0.15rem 0;
+      transition: color 0.15s;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--text);
+    }
+
+    nav .divider {
+      margin: 1.5rem 0;
+    }
+
+    /* ---- MAIN ---- */
+    main {
+      flex: 1;
+      padding: 4.5rem 3rem 6rem;
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+    }
+
+    h1 {
+      font-family: 'EB Garamond', serif;
+      font-weight: 400;
+      font-size: 2.4rem;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .rule {
+      border: none;
+      margin: 1.75rem 0 2rem;
+    }
+
+    /* ---- SECTIONS ---- */
+    section { display: none; width: 100%; max-width: 620px; }
+    section.active { display: block; }
+
+    p { margin-bottom: 1rem; }
+    p:last-child { margin-bottom: 0; }
+
+    .intro-line {
+      color: var(--link);
+      font-style: italic;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-lead {
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-lead:not(:first-of-type) {
+      margin-top: 2.25rem;
+    }
+
+    .closing-line {
+      margin-top: 2.5rem;
+      color: var(--text);
+    }
+
+    .bullet-block {
+      margin: 0 0 1.5rem 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .bullet-block li {
+      padding-left: 1.4rem;
+      position: relative;
+      margin-bottom: 0.25rem;
+      color: var(--text);
+    }
+
+    .bullet-block li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--muted);
+    }
+
+    a.inline {
+      color: var(--link);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ---- EXPERIENCE ---- */
+    .entry {
+      margin-bottom: 2.5rem;
+    }
+
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.25rem;
+    }
+
+    .entry-title {
+      font-style: italic;
+      color: var(--link);
+      font-size: 1.05rem;
+    }
+
+    .entry-date {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--faint);
+      white-space: nowrap;
+      margin-left: 1rem;
+    }
+
+    .entry-org {
+      font-weight: 400;
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .entry-desc {
+      font-size: 1rem;
+    }
+
+    /* ---- PROJECTS ---- */
+    .project-entry {
+      margin-bottom: 2.5rem;
+    }
+
+    .project-name {
+      font-style: italic;
+      color: var(--link);
+      font-size: 1.05rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .project-stack {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--faint);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ---- BLOG ---- */
+    .post-entry {
+      margin-bottom: 1.75rem;
+      padding-bottom: 1.75rem;
+    }
+
+    .post-title {
+      font-size: 1.1rem;
+      color: var(--link);
+      font-style: italic;
+      margin-bottom: 0.15rem;
+      cursor: pointer;
+    }
+
+    .post-meta {
+      font-family: 'Geist Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--faint);
+      margin-bottom: 0.4rem;
+    }
+
+    /* ---- MOBILE ---- */
+    @media (max-width: 720px) {
+      .layout { flex-direction: column; }
+      nav {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 1.5rem;
+        gap: 1rem;
+      }
+      nav .divider { display: none; }
+      nav .nav-group { margin-bottom: 0; }
+      main {
+        width: 100%;
+        padding: 2rem 1.5rem 4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+
+  <!-- SIDEBAR NAV -->
+  <nav>
+    <div class="nav-group">
+      <div class="nav-label">Navigation</div>
+      <a href="#" class="active" onclick="show('home', this)">Home</a>
+      <a href="#" onclick="show('experience', this)">Experience</a>
+      <a href="#" onclick="show('projects', this)">Projects</a>
+      <a href="#" onclick="show('blog', this)">Blog</a>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="nav-group">
+      <div class="nav-label">Find Me</div>
+      <a href="https://linkedin.com/in/aidenfdsouza" target="_blank">LinkedIn</a>
+      <a href="https://github.com/aiden-f-dsouza" target="_blank">GitHub</a>
+      <a href="https://twitter.com/aidendsouza3" target="_blank">Twitter</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- HOME -->
+    <section id="home" class="active">
+      <h1>Aiden D'Souza</h1>
+      <hr class="rule" />
+
+      <p class="section-lead">Some things about me:</p>
+      <ul class="bullet-block">
+        <li>I'm currently studying CS + Education at the University of Illinois Urbana-Champaign.</li>
+        <li>I'm working on <a class="inline" href="#" onclick="show('projects', document.querySelectorAll('nav a')[2])">Illinotes</a>, a note-sharing platform for UIUC students, 
+            and <a class="inline" href="#" onclick="show('projects', document.querySelectorAll('nav a')[2])">Mentions Trading Model</a>, to live trade company earnings call mentions on Kalshi</li>
+        <li>I love building new things. I think the best tools are the ones that genuinely help people learn and think better.</li>
+      </ul>
+
+      <p class="section-lead">Some things I'm interested in:</p>
+      <ul class="bullet-block">
+        <li>Education, especially how technology can change the way people learn and think.</li>
+        <li>Building cool new things that people actually want to use.</li>
+        <li>Understanding what it actually means to think well.</li>
+        <li>Prediction markets</li>
+
+      </ul>
+
+      <p class="closing-line">Checkout my
+        <a class="inline" href="#" onclick="show('experience', document.querySelectorAll('nav a')[1])">experience</a>,
+        <a class="inline" href="#" onclick="show('projects', document.querySelectorAll('nav a')[2])">projects</a>, and
+        <a class="inline" href="#" onclick="show('blog', document.querySelectorAll('nav a')[3])">blog</a>.</p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <h1>Experience</h1>
+      <hr class="rule" />
+
+      <div class="entry">
+        <div class="entry-header">
+          <span class="entry-title">Research, IP and Software Development Intern</span>
+          <span class="entry-date">May 2026 - Present</span>
+        </div>
+        <div class="entry-org">Stealth AI Startup</div>
+        <p class="entry-desc">Researching and developing extensions of causal software to scale to large-scale enterprise industrial descision making.</p>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <h1>Projects</h1>
+      <hr class="rule" />
+
+      <div class="project-entry">
+        <div class="project-name">Mentions Trading Model (in progress)</div>
+        <div class="project-stack"> Python · Kalshi SDK </div>
+        <p>Forward thinking trading model that auto-trades earnings call mentions on Kalshi.</p>
+
+      <div class="project-entry">
+        <div class="project-name">Illinotes</div>
+        <div class="project-stack">Python · React · Supabase · Vercel</div>
+        <p>A full-stack note-sharing platform for UIUC students. Allows students to upload, organize, and discover course notes across departments. Live at <a class="inline" href="https://illinotes.com" target="_blank">illinotes.com</a>.</p>
+      </div>
+
+      <div class="project-entry">
+        <div class="project-name">PRISM</div>
+        <div class="project-stack">Python · Audio-Visual ML · Real-Time DSP</div>
+        <p>A real-time voice isolation system using audio-visual speech extraction. Separates a target speaker's voice from background noise by combining lip-reading with audio processing. Built at HackIllinois.</p>
+      </div>
+
+      <div class="project-entry">
+        <div class="project-name">Kova</div>
+        <div class="project-stack">Python · Twilio · Supabase · Keywords AI</div>
+        <p>A real-time scam call detection system. Intercepts and analyzes phone calls to flag potential scam patterns to protect users from phone fraud.</p>
+      </div>
+    </section>
+
+    <!-- BLOG -->
+    <section id="blog">
+      <h1>Blog</h1>
+      <hr class="rule" />
+
+      <p style="color: var(--muted); font-style: italic; margin-bottom: 2rem;">Thinking out loud.</p>
+
+      <div class="post-entry">
+        
+      </div>
+
+      <div class="post-entry">
+        
+      </div>
+
+      <div class="post-entry">
+        
+      </div>
+
+    </section>
+
+  </main>
+  </div>
+
+  <script>
+    function show(id, el) {
+      event.preventDefault();
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      el.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
